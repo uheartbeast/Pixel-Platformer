@@ -20,6 +20,11 @@ extents = Vector2( 6, 8.5 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
+JUMP_FORCE = -160
+JUMP_RELEASE_FORCE = -40
+MAX_SPEED = 75
+GRAVITY = 5
+ADDITIONAL_FALL_GRAVITY = 2
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
