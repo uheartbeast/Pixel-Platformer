@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Player.gd"
+} ]
+_global_script_class_icons={
+"Player": ""
+}
+
 [application]
 
 config/name="Pixel Platformer"
@@ -21,6 +31,10 @@ window/size/height=180
 window/size/test_width=1280
 window/size/test_height=720
 window/stretch/mode="2d"
+
+[global]
+
+pixel=false
 
 [importer_defaults]
 
@@ -52,4 +66,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+2d/snapping/use_gpu_pixel_snap=true
 environment/default_environment="res://default_env.tres"
