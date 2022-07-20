@@ -4,6 +4,7 @@
 [ext_resource path="res://Spikes.gd" type="Script" id=2]
 
 [node name="Spikes" type="Area2D"]
+collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
