@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://characters_packed.png" type="Texture" id=1]
 [ext_resource path="res://WalkingEnemy.gd" type="Script" id=2]
+[ext_resource path="res://Hitbox.tscn" type="PackedScene" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -45,3 +46,8 @@ cast_to = Vector2( 0, 2 )
 position = Vector2( -6, -1 )
 enabled = true
 cast_to = Vector2( 0, 2 )
+
+[node name="Hitbox" parent="." instance=ExtResource( 3 )]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
+polygon = PoolVector2Array( -8, -1, -8, -9, -2, -12, -2, -14, -1, -16, 0, -16, 1, -14, 1, -12, 7, -9, 7, -1 )
