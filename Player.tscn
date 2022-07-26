@@ -24,3 +24,10 @@ shape = SubResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+
+[node name="LadderCheck" type="RayCast2D" parent="."]
+position = Vector2( 0, -4 )
+enabled = true
+cast_to = Vector2( 0, 15 )
+collide_with_areas = true
+collide_with_bodies = false

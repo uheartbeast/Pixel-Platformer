@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "Ladder",
+"language": "GDScript",
+"path": "res://Ladder.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://PlayerMovementData.gd"
 } ]
 _global_script_class_icons={
+"Ladder": "",
 "Player": "",
 "PlayerMovementData": ""
 }
