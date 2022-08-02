@@ -37,6 +37,10 @@ run/main_scene="res://World.tscn"
 run/delta_sync_after_draw=true
 config/icon="res://icon.png"
 
+[autoload]
+
+SoundPlayer="*res://Sounds/SoundPlayer.tscn"
+
 [display]
 
 window/size/width=320
