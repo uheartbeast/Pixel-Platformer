@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://characters_packed.png" type="Texture" id=1]
+[ext_resource path="res://Hitbox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://StompEnemy.gd" type="Script" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 120, 24, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 96, 24, 24, 24 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "Falling",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ) ],
+"loop": true,
+"name": "Rising",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 7, 7 )
+
+[sub_resource type="Gradient" id=5]
+colors = PoolColorArray( 1, 1, 1, 0.392157, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+emission_shape = 2
+emission_box_extents = Vector3( 9, 2, 0 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+gravity = Vector3( 0, 2, 0 )
+initial_velocity = 20.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 360.0
+angle_random = 1.0
+scale = 4.0
+scale_random = 1.0
+color_ramp = SubResource( 6 )
+
+[node name="StompEnemy" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -9 )
+frames = SubResource( 3 )
+animation = "Rising"
+
+[node name="Hitbox" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, -9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 4 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 0, -9 )
+enabled = true
+cast_to = Vector2( 0, 10 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Particles2D" type="Particles2D" parent="."]
+emitting = false
+amount = 64
+lifetime = 2.0
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 7 )
