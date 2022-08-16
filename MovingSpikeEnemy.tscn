@@ -26,7 +26,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, 0.99 ]
+"values": [ 0.0, 1.0 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -67,6 +67,7 @@ script = ExtResource( 3 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 rotate = false
+loop = false
 
 [node name="Enemy" type="Node2D" parent="PathFollow2D"]
 

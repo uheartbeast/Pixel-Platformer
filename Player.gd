@@ -23,20 +23,20 @@ func _physics_process(delta):
 	input.y = Input.get_axis("ui_up", "ui_down")
 	
 	match state:
-		MOVE: move_state(input)
+		MOVE: move_state(input, delta)
 		CLIMB: climb_state(input)
 
-func move_state(input):
+func move_state(input, delta):
 	if is_on_ladder() and Input.is_action_just_pressed("ui_up"):
 		state = CLIMB
 	
-	apply_gravity()
+	apply_gravity(delta)
 	
 	if not horizontal_move(input):
-		apply_friction()
+		apply_friction(delta)
 		animatedSprite.animation = "Idle"
 	else:
-		apply_acceleration(input.x)
+		apply_acceleration(input.x, delta)
 		animatedSprite.animation = "Run"
 		animatedSprite.flip_h = input.x > 0
 	
@@ -51,7 +51,7 @@ func move_state(input):
 		input_jump_release()
 		input_double_jump()
 		buffer_jump()
-		fast_fall()
+		fast_fall(delta)
 	
 	var was_in_air = not is_on_floor()
 	var was_on_floor = is_on_floor()
@@ -101,9 +101,9 @@ func buffer_jump():
 		buffered_jump = true
 		jumpBufferTimer.start()
 
-func fast_fall():
+func fast_fall(delta):
 	if velocity.y > 0:
-		velocity.y += moveData.ADDITIONAL_FALL_GRAVITY
+		velocity.y += moveData.ADDITIONAL_FALL_GRAVITY * delta
 
 func can_jump():
 	return is_on_floor() or coyote_jump
@@ -126,15 +126,15 @@ func is_on_ladder():
 	if not collider is Ladder: return false
 	return true
 
-func apply_gravity():
-	velocity.y += moveData.GRAVITY
+func apply_gravity(delta):
+	velocity.y += moveData.GRAVITY * delta
 	velocity.y = min(velocity.y, 300)
 
-func apply_friction():
-	velocity.x = move_toward(velocity.x, 0, moveData.FRICION)
+func apply_friction(delta):
+	velocity.x = move_toward(velocity.x, 0, moveData.FRICION * delta)
 
-func apply_acceleration(amount):
-	velocity.x = move_toward(velocity.x, moveData.MAX_SPEED * amount, moveData.ACCELERATION)
+func apply_acceleration(amount, delta):
+	velocity.x = move_toward(velocity.x, moveData.MAX_SPEED * amount, moveData.ACCELERATION * delta)
 
 func _on_JumpBufferTimer_timeout():
 	buffered_jump = false
