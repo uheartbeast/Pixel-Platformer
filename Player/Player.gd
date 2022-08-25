@@ -3,7 +3,7 @@ class_name Player
 
 enum { MOVE, CLIMB }
 
-export(Resource) var moveData = preload("res://DefaultPlayerMovementData.tres") as PlayerMovementData
+export(Resource) var moveData = preload("res://Player/DefaultPlayerMovementData.tres") as PlayerMovementData
 
 var velocity = Vector2.ZERO
 var state = MOVE
